@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<MovieDbContext>(opt => opt.UseInMemoryDatabase("MovieDbContext"));
+//builder.Services.AddDbContext<MovieDbContext>(opt => opt.UseInMemoryDatabase("MovieDbContext"));
+builder.Services.AddDbContext<MovieDbContext>(opt => opt.UseSqlite(builder.Configuration.GetConnectionString("MovieDbContext")));
 builder.Services.AddScoped<MovieRepository>();
 builder.Services.AddScoped<CategoryRepository>();
 
